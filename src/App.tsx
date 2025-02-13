@@ -16,9 +16,6 @@ export const goodsFromServer = [
   'Garlic',
 ];
 
-const SORT_AL = 'alphabetically';
-const SORT_LENGTH = 'length';
-
 enum SortType {
   al = 'alphabetically',
   length = 'length',
@@ -28,13 +25,13 @@ enum SortType {
 function prepareGoods(goodsServer: string[], sort: SortType, reverse: boolean) {
   const goods = [...goodsServer];
 
-  if (sort) {
+  if (sort !== SortType.none) {
     goods.sort((good1, good2) => {
       switch (sort) {
-        case SORT_AL:
+        case SortType.al:
           return good1.localeCompare(good2);
 
-        case SORT_LENGTH:
+        case SortType.length:
           return good1.length - good2.length;
 
         default:
